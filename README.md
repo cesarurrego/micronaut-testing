@@ -1,47 +1,75 @@
-## Micronaut 4.3.6 Documentation
+# Get Started
 
-- [User Guide](https://docs.micronaut.io/4.3.6/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.3.6/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.3.6/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+This is a simple backend server project using micronaut and Mongo DB. 
 
-- [Micronaut Gradle Plugin documentation](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/)
-- [GraalVM Gradle Plugin documentation](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html)
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-## Feature ksp documentation
+## DB Configuration
 
-- [Micronaut Kotlin Symbol Processing (KSP) documentation](https://docs.micronaut.io/latest/guide/#kotlin)
+Create data in mongo DB and update the property in application.properties files.
+You need to create the collections app_user.
 
-- [https://kotlinlang.org/docs/ksp-overview.html](https://kotlinlang.org/docs/ksp-overview.html)
+## Testing
 
+### APIs
 
-## Feature mongo-sync documentation
+Create user
+```shell
+curl --location 'localhost:8080/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "firstName": "Cesar",
+    "lastName": "Urrego",
+    "email": "cesar@test.com",
+    "street": "Street 123",
+    "city": "City 123",
+    "code": 1
+}'
+```
 
-- [Micronaut MongoDB Synchronous Driver documentation](https://micronaut-projects.github.io/micronaut-mongodb/latest/guide/index.html)
+Update User
+```shell
+curl --location --request PUT 'localhost:8080/users/65fc09a42169212980f59816' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "firstName": "Cesar",
+    "lastName": "Urrego",
+    "email": "cesar@test.com",
+    "street": "Street 123",
+    "city": "City 123",
+    "code": 1
+}'
+```
 
-- [https://docs.mongodb.com](https://docs.mongodb.com)
+Get all Users
+```shell
+curl --location 'localhost:8080/users' \
+--header 'Content-Type: application/json' \
+--data ''
+```
 
+Get user by ID
+```shell
+curl --location 'localhost:8080/users/65fc09a42169212980f59816' \
+--header 'Content-Type: application/json' \
+--data ''
+```
 
-## Feature test-resources documentation
+Delete User
+```shell
+curl --location --request DELETE 'localhost:8080/users/660214f6c621267ff5677acd' \
+--header 'Content-Type: application/json' \
+--data ''
+```
 
-- [Micronaut Test Resources documentation](https://micronaut-projects.github.io/micronaut-test-resources/latest/guide/)
+Search user by name
+```shell
+curl --location 'localhost:8080/users/search' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Cesar"
+}'
+```
 
+### Disclaimer:
 
-## Feature micronaut-aot documentation
-
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
-
-
-## Feature serialization-jackson documentation
-
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
-
-
-## Feature data-mongodb documentation
-
-- [Micronaut Data MongoDB documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/#mongo)
-
-- [https://docs.mongodb.com](https://docs.mongodb.com)
-
+The base code of this app was extracted from: <img src="https://codersee.com/wp-content/uploads/2022/02/logo_square_500_500-300x300.png" height="12" alt="Codersee Image"/>[ Codersee](https://codersee.com)
 
